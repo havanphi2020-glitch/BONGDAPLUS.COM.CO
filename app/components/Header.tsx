@@ -39,7 +39,7 @@ export default function Header() {
           </Link>
 
           {/* ĐỒNG HỒ */}
-          <div style={clockBoxStyle}>
+          <div className="clock-box" style={clockBoxStyle}>            
             <span style={clockLabelStyle}>Hôm nay</span>
             <span style={clockTextStyle}>{time}</span>
           </div>
