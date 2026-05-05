@@ -120,14 +120,16 @@ const navStyle = {
   background: "#16a34a",
 } as const;
 
-const containerStyle = {
+const menuContainerStyle = {
   maxWidth: 1200,
   margin: "0 auto",
-  padding: "14px 16px",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
-  gap: 40, // 👈 thêm dòng này
+  gap: 28,
+  padding: "12px 10px",
+  fontWeight: "bold",
+  flexWrap: "wrap",
 } as const;
 
 const menuStyle = {
