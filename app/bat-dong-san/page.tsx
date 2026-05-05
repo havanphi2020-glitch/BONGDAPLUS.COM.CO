@@ -5,11 +5,11 @@ export default function Page() {
   return (
     <>
       <div className="desktop-category">
-        <CategoryPage title="Ngoại hạng Anh" />
+        <CategoryPage title="Bất động sản" />
       </div>
 
       <div className="mobile-category">
-        <CategoryPageMobile title="Ngoại hạng Anh" />
+        <CategoryPageMobile title="Bất động sản" />
       </div>
     </>
   );

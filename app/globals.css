@@ -235,3 +235,28 @@
     display: none !important;
   }
 }
+/* ================= FIX TRÙNG DESKTOP / MOBILE ================= */
+
+.desktop-category {
+  display: block;
+}
+
+.mobile-category {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 1023px) {
+  .desktop-category {
+    display: none;
+  }
+
+  .mobile-category {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  header > div > div {
+    justify-content: center !important;
+  }
+}

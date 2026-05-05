@@ -10,13 +10,6 @@ export default function Page() {
           videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
         />
       </div>
-
-      <div className="mobile-category">
-        <CategoryPageMobile
-          title="Biến động mỗi ngày"
-          videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        />
-      </div>
     </>
   );
 }

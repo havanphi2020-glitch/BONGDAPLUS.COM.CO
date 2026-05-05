@@ -71,7 +71,7 @@ const containerStyle = {
   margin: "0 auto",
   padding: "14px 16px",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center", // 👈 đổi dòng này
   alignItems: "center",
 } as const;
 
