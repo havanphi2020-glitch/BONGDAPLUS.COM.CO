@@ -1,21 +1,50 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+
+      const formatted = now.toLocaleString("vi-VN", {
+        weekday: "long",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+
+      setTime(formatted);
+    };
+
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <header>
-  <div style={topBarStyle}>
-  <div style={containerStyle}>
-    {/* LOGO BÊN TRÁI */}
-    <Link href="/" style={logoWrapStyle}>
-      <img src="/logo.png" alt="Bongdaplus Logo" style={logoStyle} />
-    </Link>
+      <div style={topBarStyle}>
+        <div style={containerStyle}>
+          {/* LOGO */}
+          <Link href="/" style={logoWrapStyle}>
+            <img src="/logo.png" alt="Bongdaplus Logo" style={logoStyle} />
+          </Link>
 
-    {/* NGÀY GIỜ BÊN PHẢI */}
-    <div style={dateStyle}>
-      {new Date().toLocaleString("vi-VN")}
-    </div>
-  </div>
-</div>
+          {/* ĐỒNG HỒ */}
+          <div style={clockBoxStyle}>
+            <span style={clockLabelStyle}>Hôm nay</span>
+            <span style={clockTextStyle}>{time}</span>
+          </div>
+        </div>
+      </div>
 
       {/* MENU */}
       <nav style={navStyle}>
@@ -42,20 +71,44 @@ const containerStyle = {
   margin: "0 auto",
   padding: "14px 16px",
   display: "flex",
-  justifyContent: "space-between", // 👈 trái - phải
+  justifyContent: "space-between",
   alignItems: "center",
 } as const;
 
 const logoWrapStyle = {
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
 } as const;
 
 const logoStyle = {
-  height: 90, // 👈 tăng size
+  height: 100,
   width: "auto",
+} as const;
+
+/* KHUNG ĐỒNG HỒ */
+const clockBoxStyle = {
+  background: "linear-gradient(145deg, #ffffff, #e0f7ff)",
+  border: "2px solid #38bdf8",
+  borderRadius: 18,
+  padding: "10px 18px",
+  minWidth: 320,
+  textAlign: "center",
+  boxShadow: "0 8px 22px rgba(0,0,0,0.18)",
+} as const;
+
+const clockLabelStyle = {
   display: "block",
+  color: "#16a34a",
+  fontSize: 13,
+  fontWeight: 900,
+  marginBottom: 4,
+} as const;
+
+const clockTextStyle = {
+  display: "block",
+  color: "#075985",
+  fontSize: 16,
+  fontWeight: 900,
 } as const;
 
 const navStyle = {
