@@ -1,3 +1,5 @@
+/* ================= LAYOUT CHUNG ================= */
+
 .home-page {
   max-width: 1450px;
   margin: 0 auto;
@@ -13,6 +15,8 @@
   border-bottom: 4px solid #38bdf8;
   padding-bottom: 14px;
 }
+
+/* ================= GRID TOP ================= */
 
 .home-top-grid {
   display: grid;
@@ -36,6 +40,8 @@
   font-weight: 900;
   text-align: center;
 }
+
+/* ================= VIDEO ================= */
 
 .home-video-box {
   background: linear-gradient(145deg, #e0f7ff, #ffffff);
@@ -64,7 +70,8 @@
   border: none;
 }
 
-/* KHUNG GIỚI THIỆU */
+/* ================= GIỚI THIỆU ================= */
+
 .home-desc-box {
   margin-top: 32px;
   background: linear-gradient(145deg, #f0f9ff, #e0f7ff);
@@ -91,6 +98,8 @@
   margin-bottom: 12px;
 }
 
+/* ================= SECTION ================= */
+
 .home-section {
   margin-top: 36px;
 }
@@ -105,7 +114,8 @@
   padding-bottom: 12px;
 }
 
-/* CARD BÀI VIẾT */
+/* ================= CARD BÀI VIẾT ================= */
+
 .home-post-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -154,7 +164,8 @@
   text-align: center;
 }
 
-/* CHUYÊN MỤC */
+/* ================= CHUYÊN MỤC ================= */
+
 .home-category-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -174,8 +185,9 @@
   box-shadow: 0 8px 20px rgba(14, 165, 233, 0.16);
 }
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE ================= */
 
+/* Tablet + Mobile */
 @media (max-width: 1023px) {
   .home-page {
     padding: 18px 12px 32px;
@@ -191,7 +203,7 @@
     gap: 16px;
   }
 
-  /* 🔥 ẨN banner 2 bên */
+  /* ẨN banner 2 bên */
   .home-banner {
     display: none;
   }
@@ -229,13 +241,23 @@
   }
 }
 
-/* ẨN ĐỒNG HỒ MOBILE */
+/* ================= HEADER MOBILE ================= */
+
 @media (max-width: 768px) {
+  .header-container {
+    justify-content: center !important;
+  }
+
   .clock-box {
     display: none !important;
   }
+
+  header img {
+    height: 90px !important;
+  }
 }
-/* ================= FIX TRÙNG DESKTOP / MOBILE ================= */
+
+/* ================= FIX DESKTOP / MOBILE CATEGORY ================= */
 
 .desktop-category {
   display: block;
@@ -245,7 +267,6 @@
   display: none;
 }
 
-/* MOBILE */
 @media (max-width: 1023px) {
   .desktop-category {
     display: none;
@@ -253,10 +274,5 @@
 
   .mobile-category {
     display: block;
-  }
-}
-@media (max-width: 768px) {
-  header > div > div {
-    justify-content: center !important;
   }
 }
