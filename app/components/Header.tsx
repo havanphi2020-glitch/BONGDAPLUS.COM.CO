@@ -3,19 +3,19 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header>
-      {/* TOP BAR */}
-      <div style={topBarStyle}>
-        <div style={containerStyle}>
-          {/* LOGO */}
-          <Link href="/" style={logoWrapStyle}>
-            <img
-              src="/logo.png"
-              alt="Bongdaplus Logo"
-              style={logoStyle}
-            />
-          </Link>
-        </div>
-      </div>
+  <div style={topBarStyle}>
+  <div style={containerStyle}>
+    {/* LOGO BÊN TRÁI */}
+    <Link href="/" style={logoWrapStyle}>
+      <img src="/logo.png" alt="Bongdaplus Logo" style={logoStyle} />
+    </Link>
+
+    {/* NGÀY GIỜ BÊN PHẢI */}
+    <div style={dateStyle}>
+      {new Date().toLocaleString("vi-VN")}
+    </div>
+  </div>
+</div>
 
       {/* MENU */}
       <nav style={navStyle}>
@@ -42,7 +42,7 @@ const containerStyle = {
   margin: "0 auto",
   padding: "14px 16px",
   display: "flex",
-  justifyContent: "center", // 👈 luôn căn giữa logo
+  justifyContent: "space-between", // 👈 trái - phải
   alignItems: "center",
 } as const;
 
@@ -53,7 +53,7 @@ const logoWrapStyle = {
 } as const;
 
 const logoStyle = {
-  height: 70,
+  height: 90, // 👈 tăng size
   width: "auto",
   display: "block",
 } as const;

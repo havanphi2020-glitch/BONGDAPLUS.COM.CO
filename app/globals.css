@@ -74,19 +74,17 @@
 }
 
 .home-desc-box h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
-  color: #075985;
-  text-align: center;
-  margin-bottom: 16px;
+  color: #0c4a6e; /* đậm hơn */
+  letter-spacing: 0.5px;
 }
 
 .home-desc-box p {
-  color: #0f766e;
+  color: #0f172a; /* đậm rõ hơn */
   font-size: 18px;
-  line-height: 1.8;
-  text-align: center;
-  margin-bottom: 12px;
+  font-weight: 500; /* thêm độ đậm */
+  line-height: 1.9;
 }
 
 .home-section {
@@ -121,8 +119,7 @@
 .home-post-image {
   height: 170px;
   border-radius: 14px;
-  background: linear-gradient(145deg, #bae6fd, #f0f9ff);
-  display: flex;
+background: linear-gradient(145deg, #e2f3ff, #f8fcff);  display: flex;
   align-items: center;
   justify-content: center;
   color: #075985;
@@ -214,5 +211,18 @@
 
   .home-category-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  header div[style] {
+    justify-content: center !important;
+  }
+
+  header div[style] > div:last-child {
+    display: none !important; /* ẩn ngày giờ */
+  }
+
+  header img {
+    height: 60px !important;
   }
 }
