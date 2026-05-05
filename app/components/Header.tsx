@@ -74,6 +74,10 @@ export default function Header() {
             BẤT ĐỘNG SẢN
           </Link>
 
+          <Link href="/bien-dong-moi-ngay" style={menuStyle}>
+            BIỂN ĐỘNG MỖI NGÀY
+          </Link>
+
           <Link href="/vinanext" style={menuStyle}>
             VINANEXT
           </Link>
