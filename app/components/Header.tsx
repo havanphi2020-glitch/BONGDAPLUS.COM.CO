@@ -23,15 +23,16 @@ export default function Header() {
           {/* LOGO */}
           <Link href="/" style={{ display: "flex", alignItems: "center" }}>
             <img
-              src="/logo.png"
-              alt="Bongdaplus Logo"
-              style={{
-                height: 40,
-                width: "auto",
-                display: "block",
-                cursor: "pointer",
-              }}
-            />
+  src="/logo.png"
+  alt="Bongdaplus Logo"
+  style={{
+    height: 80,
+    width: "auto",
+    display: "block",
+    cursor: "pointer",
+    filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))"
+  }}
+/>
           </Link>
 
           {/* TEXT PHỤ */}
