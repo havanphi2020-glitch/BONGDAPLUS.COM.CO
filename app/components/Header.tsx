@@ -78,10 +78,15 @@ const containerStyle = {
 const logoWrapStyle = {
   display: "flex",
   alignItems: "center",
+  padding: "10px 20px",
+  borderRadius: 20,
+  background: "linear-gradient(145deg, #ffffff, #e0f7ff)",
+  border: "2px solid #38bdf8",
+  boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
 } as const;
 
 const logoStyle = {
-  height: 100,
+  height: 140,
   width: "auto",
 } as const;
 
