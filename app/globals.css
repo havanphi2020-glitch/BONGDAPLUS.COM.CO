@@ -276,3 +276,122 @@
     display: block;
   }
 }
+/* ================= DANH SÁCH BÀI VIẾT ================= */
+
+.posts-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.posts-title {
+  font-size: 36px;
+  font-weight: 900;
+  text-align: center;
+  color: #075985;
+  margin-bottom: 30px;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.post-card {
+  background: #e0f7ff;
+  border: 1px solid #38bdf8;
+  border-radius: 16px;
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 22px rgba(14,165,233,0.18);
+  transition: 0.3s;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.post-category {
+  font-size: 14px;
+  font-weight: bold;
+  color: #16a34a;
+  margin-bottom: 6px;
+}
+
+.post-card h2 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.post-card p {
+  font-size: 15px;
+  color: #0f766e;
+}
+
+/* ================= CHI TIẾT BÀI ================= */
+
+.post-detail-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.post-detail-card {
+  background: #f0f9ff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 28px rgba(14,165,233,0.2);
+}
+
+.post-detail-category {
+  color: #16a34a;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-detail-card h1 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.post-detail-image {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.post-detail-desc {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.post-detail-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .post-detail-card h1 {
+    font-size: 24px;
+  }
+}
