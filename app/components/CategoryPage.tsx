@@ -147,6 +147,7 @@ const articleTitleStyle = {
   fontWeight: "bold",
   color: "#075985",
   marginBottom: 8,
+  textAlign: "center",
 } as const;
 
 const articleTextStyle = {
@@ -168,6 +169,7 @@ const descTitleStyle = {
   fontWeight: "bold",
   color: "#075985",
   marginBottom: 14,
+  textAlign: "center",
 } as const;
 
 const descTextStyle = {
@@ -175,4 +177,5 @@ const descTextStyle = {
   fontSize: 18,
   lineHeight: 1.8,
   marginBottom: 12,
+  textAlign: "center",
 } as const;

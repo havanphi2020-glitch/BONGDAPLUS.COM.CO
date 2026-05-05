@@ -1,93 +1,82 @@
 import Link from "next/link";
+
 export default function Header() {
   return (
     <header>
       {/* TOP BAR */}
-      <div
-        style={{
-          background: "#0a8f2f",
-          color: "white",
-          padding: "15px",
-          fontWeight: "bold",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+      <div style={topBarStyle}>
+        <div style={containerStyle}>
           {/* LOGO */}
-          <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+          <Link href="/" style={logoWrapStyle}>
             <img
-  src="/logo.png"
-  alt="Bongdaplus Logo"
-  style={{
-    height: 80,
-    width: "auto",
-    display: "block",
-    cursor: "pointer",
-    filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))"
-  }}
-/>
+              src="/logo.png"
+              alt="Bongdaplus Logo"
+              style={logoStyle}
+            />
           </Link>
-
-          {/* TEXT PHỤ */}
         </div>
       </div>
 
       {/* MENU */}
-      <nav style={{ background: "#16a34a" }}>
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 30,
-            padding: "12px",
-            fontWeight: "bold",
-            flexWrap: "wrap",
-          }}
-        >
-          <Link href="/" style={menuStyle}>
-            TRANG CHỦ
-          </Link>
-
-          <Link href="/bong-da-viet-nam" style={menuStyle}>
-            BÓNG ĐÁ VIỆT NAM
-          </Link>
-
-          <Link href="/bong-da-the-gioi" style={menuStyle}>
-            BÓNG ĐÁ THẾ GIỚI
-          </Link>
-
-          <Link href="/ngoai-hang-anh" style={menuStyle}>
-            NGOẠI HẠNG ANH
-          </Link>
-
-          <Link href="/bat-dong-san" style={menuStyle}>
-            BẤT ĐỘNG SẢN
-          </Link>
-
-          <Link href="/bien-dong-moi-ngay" style={menuStyle}>
-            BIỂN ĐỘNG MỖI NGÀY
-          </Link>
-
-          <Link href="/vinanext" style={menuStyle}>
-            VINANEXT
-          </Link>
+      <nav style={navStyle}>
+        <div style={menuContainerStyle}>
+          <Link href="/" style={menuStyle}>TRANG CHỦ</Link>
+          <Link href="/bong-da-viet-nam" style={menuStyle}>BÓNG ĐÁ VIỆT NAM</Link>
+          <Link href="/bong-da-the-gioi" style={menuStyle}>BÓNG ĐÁ THẾ GIỚI</Link>
+          <Link href="/ngoai-hang-anh" style={menuStyle}>NGOẠI HẠNG ANH</Link>
+          <Link href="/bat-dong-san" style={menuStyle}>BẤT ĐỘNG SẢN</Link>
+          <Link href="/bien-dong-moi-ngay" style={menuStyle}>BIẾN ĐỘNG MỖI NGÀY</Link>
+          <Link href="/vinanext" style={menuStyle}>VINANEXT</Link>
         </div>
       </nav>
     </header>
   );
 }
 
+const topBarStyle = {
+  background: "#0a8f2f",
+} as const;
+
+const containerStyle = {
+  maxWidth: 1200,
+  margin: "0 auto",
+  padding: "14px 16px",
+  display: "flex",
+  justifyContent: "center", // 👈 luôn căn giữa logo
+  alignItems: "center",
+} as const;
+
+const logoWrapStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+} as const;
+
+const logoStyle = {
+  height: 70,
+  width: "auto",
+  display: "block",
+} as const;
+
+const navStyle = {
+  background: "#16a34a",
+} as const;
+
+const menuContainerStyle = {
+  maxWidth: 1200,
+  margin: "0 auto",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 28,
+  padding: "12px 10px",
+  fontWeight: "bold",
+  flexWrap: "wrap",
+} as const;
+
 const menuStyle = {
   color: "white",
   textDecoration: "none",
+  fontSize: 16,
+  whiteSpace: "nowrap",
 } as const;
