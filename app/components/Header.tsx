@@ -10,17 +10,17 @@ export default function Header() {
     const updateTime = () => {
       const now = new Date();
 
-      const formatted = now.toLocaleString("vi-VN", {
-        weekday: "long",
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-
-      setTime(formatted);
+      setTime(
+        now.toLocaleString("vi-VN", {
+          weekday: "long",
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
     };
 
     updateTime();
@@ -32,21 +32,18 @@ export default function Header() {
   return (
     <header>
       <div style={topBarStyle}>
-        <div style={containerStyle}>
-          {/* LOGO */}
+        <div className="header-container" style={containerStyle}>
           <Link href="/" style={logoWrapStyle}>
             <img src="/logo.png" alt="Bongdaplus Logo" style={logoStyle} />
           </Link>
 
-          {/* ĐỒNG HỒ */}
-          <div className="clock-box" style={clockBoxStyle}>            
+          <div className="clock-box" style={clockBoxStyle}>
             <span style={clockLabelStyle}>Hôm nay</span>
             <span style={clockTextStyle}>{time}</span>
           </div>
         </div>
       </div>
 
-      {/* MENU */}
       <nav style={navStyle}>
         <div style={menuContainerStyle}>
           <Link href="/" style={menuStyle}>TRANG CHỦ</Link>
@@ -69,16 +66,17 @@ const topBarStyle = {
 const containerStyle = {
   maxWidth: 1200,
   margin: "0 auto",
-  padding: "14px 16px",
+  padding: "18px 16px",
   display: "flex",
-  justifyContent: "center", // 👈 đổi dòng này
+  justifyContent: "space-between",
   alignItems: "center",
+  gap: 40,
 } as const;
 
 const logoWrapStyle = {
   display: "flex",
   alignItems: "center",
-  padding: "10px 20px",
+  padding: "10px 22px",
   borderRadius: 20,
   background: "linear-gradient(145deg, #ffffff, #e0f7ff)",
   border: "2px solid #38bdf8",
@@ -86,11 +84,11 @@ const logoWrapStyle = {
 } as const;
 
 const logoStyle = {
-  height: 140,
+  height: 120,
   width: "auto",
+  display: "block",
 } as const;
 
-/* KHUNG ĐỒNG HỒ */
 const clockBoxStyle = {
   background: "linear-gradient(145deg, #ffffff, #e0f7ff)",
   border: "2px solid #38bdf8",
