@@ -35,7 +35,6 @@ export default function Header() {
           </Link>
 
           {/* TEXT PHỤ */}
-          <div>🔥 Tin nóng 24h</div>
         </div>
       </div>
 
