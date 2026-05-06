@@ -75,10 +75,14 @@ export default function AdminPage() {
         })
       );
 
-      setPosts(parsedPosts);
-      localStorage.setItem("posts", JSON.stringify(parsedPosts));
-    }
-  }, [router]);
+setPosts(parsedPosts);
+
+if (parsedPosts.length > 0) {
+  localStorage.setItem("posts", JSON.stringify(parsedPosts));
+}
+
+}
+}, [router]);
 
   function resetForm() {
     setEditingId(null);
