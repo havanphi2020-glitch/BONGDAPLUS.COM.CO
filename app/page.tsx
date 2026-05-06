@@ -22,7 +22,7 @@ const featuredPosts = [
 ];
 
 const categories = [
-  { title: "Bóng đá Việt Nam", href: "/bong-da-viet-nam" },
+  { title="🔥 TEST DEPLOY OK 🔥", href: "/bong-da-viet-nam" },
   { title: "Bóng đá thế giới", href: "/bong-da-the-gioi" },
   { title: "Ngoại hạng Anh", href: "/ngoai-hang-anh" },
   { title: "Bất động sản", href: "/bat-dong-san" },
