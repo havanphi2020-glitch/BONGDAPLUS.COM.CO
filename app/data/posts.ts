@@ -3,6 +3,7 @@ export const posts = [
     slug: "tin-nong-bong-da-hom-nay",
     title: "Tin nóng bóng đá hôm nay",
     category: "Bóng đá Việt Nam",
+    categorySlug: "bong-da-viet-nam",
     image: "/post1.jpg",
     desc: "Cập nhật nhanh những tin tức bóng đá đáng chú ý trong ngày.",
     content: `
@@ -13,10 +14,12 @@ Bạn có thể viết nhiều đoạn văn tại đây. Nội dung sẽ hiển 
 Phần này sau này có thể thay bằng dữ liệu thật từ database hoặc CMS.
     `,
   },
+
   {
     slug: "ngoai-hang-anh-moi-nhat",
     title: "Ngoại hạng Anh mới nhất",
     category: "Ngoại hạng Anh",
+    categorySlug: "ngoai-hang-anh",
     image: "/post2.jpg",
     desc: "Lịch thi đấu, kết quả và các diễn biến nổi bật.",
     content: `
@@ -25,10 +28,12 @@ Ngoại hạng Anh luôn là giải đấu hấp dẫn với nhiều diễn bi�
 Bài viết này dùng để demo trang chi tiết tin tức.
     `,
   },
+
   {
     slug: "bong-da-the-gioi",
     title: "Bóng đá thế giới",
     category: "Bóng đá Thế giới",
+    categorySlug: "bong-da-the-gioi",
     image: "/post3.jpg",
     desc: "Tin quốc tế, chuyển nhượng và phân tích chuyên sâu.",
     content: `

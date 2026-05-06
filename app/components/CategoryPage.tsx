@@ -1,35 +1,42 @@
+import Link from "next/link";
+import { posts } from "../data/posts";
+
 type Props = {
   title: string;
+  categorySlug: string;
   videoUrl?: string;
 };
 
-const leftPosts = [
-  "Bài viết mới nhất 1",
-  "Bài viết mới nhất 2",
-];
-
-const rightPosts = [
-  "Bài viết mới nhất 3",
-  "Bài viết mới nhất 4",
-];
-
 export default function CategoryPage({
   title,
+  categorySlug,
   videoUrl = "https://www.youtube.com/embed/bqYujsXxT8I",
 }: Props) {
+
+  /* LỌC BÀI THEO CHUYÊN MỤC */
+  const categoryPosts = posts.filter(
+    (post) => post.categorySlug === categorySlug
+  );
+
   return (
     <main style={{ maxWidth: 1450, margin: "0 auto", padding: 24 }}>
       <h1 style={titleStyle}>{title}</h1>
 
+      {/* TOP GRID */}
       <div style={layoutStyle}>
-        {/* CỘT TRÁI */}
+
+        {/* SIDEBAR LEFT */}
         <aside style={sideBoxStyle}>
-          {leftPosts.map((post) => (
-            <Article key={post} title={post} />
+          {categoryPosts.slice(0, 2).map((post) => (
+            <Article
+              key={post.slug}
+              title={post.title}
+              desc={post.desc}
+            />
           ))}
         </aside>
 
-        {/* VIDEO GIỮA */}
+        {/* VIDEO */}
         <section style={videoBoxStyle}>
           <div style={videoRatioStyle}>
             <iframe
@@ -41,14 +48,18 @@ export default function CategoryPage({
           </div>
         </section>
 
-        {/* CỘT PHẢI */}
+        {/* SIDEBAR RIGHT */}
         <aside style={sideBoxStyle}>
-          {rightPosts.map((post) => (
-            <Article key={post} title={post} />
+          {categoryPosts.slice(2, 4).map((post) => (
+            <Article
+              key={post.slug}
+              title={post.title}
+              desc={post.desc}
+            />
           ))}
         </aside>
 
-        {/* KHUNG TEXT TRẢI NGANG */}
+        {/* GIỚI THIỆU */}
         <section style={descBoxStyle}>
           <h2 style={descTitleStyle}>Giới thiệu chuyên mục</h2>
 
@@ -59,28 +70,69 @@ export default function CategoryPage({
           </p>
 
           <p style={descTextStyle}>
-            Bạn có thể viết thêm nhiều đoạn văn bản tại đây. Khung này sẽ tự
-            động giãn theo nội dung nên không bị tràn chữ ra ngoài.
-          </p>
-
-          <p style={descTextStyle}>
-            Nội dung được trình bày rõ ràng, cân đối với giao diện hai bên, phù
-            hợp cho trang chuyên mục tin tức hoặc video nổi bật.
+            Nội dung được trình bày rõ ràng, cân đối với giao diện hai bên,
+            phù hợp cho trang chuyên mục tin tức hoặc video nổi bật.
           </p>
         </section>
       </div>
+
+      {/* DANH SÁCH BÀI VIẾT */}
+      <section style={{ marginTop: 40 }}>
+        <h2 style={descTitleStyle}>Bài viết mới nhất</h2>
+
+        <div className="home-post-grid">
+          {categoryPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/bai-viet/${post.slug}`}
+              className="home-post-card"
+            >
+              <div className="home-post-image">
+
+                {post.image ? (
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: 14,
+                    }}
+                  />
+                ) : (
+                  "Ảnh bài viết"
+                )}
+
+              </div>
+
+              <h3>{post.title}</h3>
+              <p>{post.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
 
-function Article({ title }: { title: string }) {
+/* CARD SIDEBAR */
+function Article({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
   return (
     <article style={articleStyle}>
       <h3 style={articleTitleStyle}>{title}</h3>
-      <p style={articleTextStyle}>Mô tả ngắn bài viết...</p>
+      <p style={articleTextStyle}>{desc}</p>
     </article>
   );
 }
+
+/* STYLES */
 
 const titleStyle = {
   fontSize: 42,
@@ -153,6 +205,7 @@ const articleTitleStyle = {
 const articleTextStyle = {
   color: "#0f766e",
   lineHeight: 1.5,
+  textAlign: "center",
 } as const;
 
 const descBoxStyle = {

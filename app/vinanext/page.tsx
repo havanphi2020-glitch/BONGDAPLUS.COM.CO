@@ -5,11 +5,16 @@ export default function Page() {
   return (
     <>
       <div className="desktop-category">
-        <CategoryPage title="Vinanext" />
+        <CategoryPage
+          title="Vinanext"
+          categorySlug="vinanext"
+        />
       </div>
 
       <div className="mobile-category">
-        <CategoryPageMobile title="Vinanext" />
+        <CategoryPageMobile
+          title="Vinanext"
+        />
       </div>
     </>
   );

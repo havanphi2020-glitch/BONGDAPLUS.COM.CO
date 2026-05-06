@@ -7,7 +7,14 @@ export default function Page() {
       <div className="desktop-category">
         <CategoryPage
           title="Biến động mỗi ngày"
+          categorySlug="bien-dong-moi-ngay"
           videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        />
+      </div>
+
+      <div className="mobile-category">
+        <CategoryPageMobile
+          title="Biến động mỗi ngày"
         />
       </div>
     </>
