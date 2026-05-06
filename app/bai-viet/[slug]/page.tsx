@@ -153,8 +153,7 @@ const sidePostLimit =
 
         {relatedPosts.length === 0 && <p>Chưa có bài cùng chuyên mục.</p>}
 
-        {relatedPosts.map((item) => (
-          <Link
+{relatedPosts.map((item) => (          <Link
             key={item.id || item.slug || item.title}
             href={`/bai-viet/${item.slug || toSlug(item.title)}`}
             className="post-side-item"
