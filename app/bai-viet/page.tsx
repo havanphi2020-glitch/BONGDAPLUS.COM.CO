@@ -17,7 +17,9 @@ export default function PostsPage() {
               )}
             </div>
 
-            <div className="post-category">{post.category}</div>
+            <div className="post-category">
+  {post.categorySlug?.replaceAll("-", " ")}
+</div>
             <h2>{post.title}</h2>
             <p>{post.desc}</p>
           </Link>
