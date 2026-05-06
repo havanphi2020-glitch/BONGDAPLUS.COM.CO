@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { posts } from "../data/posts";
+import { useEffect, useState } from "react";
+import { posts as demoPosts } from "../data/posts";
 
 type Props = {
   title: string;
@@ -7,14 +10,67 @@ type Props = {
   videoUrl?: string;
 };
 
+type Post = {
+  id?: string;
+  slug: string;
+  title: string;
+  category?: string;
+  categorySlug: string;
+  image?: string;
+  desc?: string;
+  content: string;
+};
+
+function toSlug(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+}
+
+function categoryToSlug(category: string) {
+  const map: Record<string, string> = {
+    "Bóng đá Việt Nam": "bong-da-viet-nam",
+    "Bóng đá Thế giới": "bong-da-the-gioi",
+    "Ngoại hạng Anh": "ngoai-hang-anh",
+    "Bất động sản": "bat-dong-san",
+    "Biến động mỗi ngày": "bien-dong-moi-ngay",
+    Vinanext: "vinanext",
+  };
+
+  return map[category] || toSlug(category);
+}
+
 export default function CategoryPage({
   title,
   categorySlug,
   videoUrl = "https://www.youtube.com/embed/bqYujsXxT8I",
 }: Props) {
+  const [allPosts, setAllPosts] = useState<Post[]>(demoPosts as Post[]);
 
-  /* LỌC BÀI THEO CHUYÊN MỤC */
-  const categoryPosts = posts.filter(
+  useEffect(() => {
+    const savedPosts = localStorage.getItem("posts");
+
+    if (savedPosts) {
+      const adminPosts = JSON.parse(savedPosts).map((post: any) => ({
+        id: post.id,
+        slug: post.slug || toSlug(post.title),
+        title: post.title,
+        category: post.category,
+        categorySlug: post.categorySlug || categoryToSlug(post.category),
+        image: post.image || "",
+        desc: post.desc || post.content?.slice(0, 120) + "...",
+        content: post.content,
+      }));
+
+      setAllPosts([...adminPosts, ...(demoPosts as Post[])]);
+    }
+  }, []);
+
+  const categoryPosts = allPosts.filter(
     (post) => post.categorySlug === categorySlug
   );
 
@@ -22,21 +78,13 @@ export default function CategoryPage({
     <main style={{ maxWidth: 1450, margin: "0 auto", padding: 24 }}>
       <h1 style={titleStyle}>{title}</h1>
 
-      {/* TOP GRID */}
       <div style={layoutStyle}>
-
-        {/* SIDEBAR LEFT */}
         <aside style={sideBoxStyle}>
           {categoryPosts.slice(0, 2).map((post) => (
-            <Article
-              key={post.slug}
-              title={post.title}
-              desc={post.desc}
-            />
+            <Article key={post.slug} post={post} />
           ))}
         </aside>
 
-        {/* VIDEO */}
         <section style={videoBoxStyle}>
           <div style={videoRatioStyle}>
             <iframe
@@ -48,35 +96,22 @@ export default function CategoryPage({
           </div>
         </section>
 
-        {/* SIDEBAR RIGHT */}
         <aside style={sideBoxStyle}>
           {categoryPosts.slice(2, 4).map((post) => (
-            <Article
-              key={post.slug}
-              title={post.title}
-              desc={post.desc}
-            />
+            <Article key={post.slug} post={post} />
           ))}
         </aside>
 
-        {/* GIỚI THIỆU */}
         <section style={descBoxStyle}>
           <h2 style={descTitleStyle}>Giới thiệu chuyên mục</h2>
 
           <p style={descTextStyle}>
             Đây là chuyên mục tổng hợp những nội dung mới nhất, hấp dẫn và đáng
-            chú ý. Tại đây bạn có thể theo dõi video nổi bật cùng các bài viết
-            được cập nhật liên tục.
-          </p>
-
-          <p style={descTextStyle}>
-            Nội dung được trình bày rõ ràng, cân đối với giao diện hai bên,
-            phù hợp cho trang chuyên mục tin tức hoặc video nổi bật.
+            chú ý. Bài viết sẽ được cập nhật liên tục.
           </p>
         </section>
       </div>
 
-      {/* DANH SÁCH BÀI VIẾT */}
       <section style={{ marginTop: 40 }}>
         <h2 style={descTitleStyle}>Bài viết mới nhất</h2>
 
@@ -88,7 +123,6 @@ export default function CategoryPage({
               className="home-post-card"
             >
               <div className="home-post-image">
-
                 {post.image ? (
                   <img
                     src={post.image}
@@ -103,7 +137,6 @@ export default function CategoryPage({
                 ) : (
                   "Ảnh bài viết"
                 )}
-
               </div>
 
               <h3>{post.title}</h3>
@@ -116,23 +149,21 @@ export default function CategoryPage({
   );
 }
 
-/* CARD SIDEBAR */
-function Article({
-  title,
-  desc,
-}: {
-  title: string;
-  desc: string;
-}) {
+function Article({ post }: { post: Post }) {
   return (
-    <article style={articleStyle}>
-      <h3 style={articleTitleStyle}>{title}</h3>
-      <p style={articleTextStyle}>{desc}</p>
-    </article>
+    <Link href={`/bai-viet/${post.slug}`} style={articleLinkStyle}>
+      <article style={articleStyle}>
+        <h3 style={articleTitleStyle}>{post.title}</h3>
+        <p style={articleTextStyle}>{post.desc}</p>
+      </article>
+    </Link>
   );
 }
 
-/* STYLES */
+const articleLinkStyle = {
+  textDecoration: "none",
+  display: "block",
+} as const;
 
 const titleStyle = {
   fontSize: 42,
@@ -157,8 +188,6 @@ const videoBoxStyle = {
   border: "3px solid #38bdf8",
   borderRadius: 24,
   padding: 18,
-  boxShadow:
-    "0 20px 45px rgba(14,165,233,0.35), inset 0 2px 8px rgba(255,255,255,0.9)",
 } as const;
 
 const videoRatioStyle = {
@@ -167,7 +196,6 @@ const videoRatioStyle = {
   aspectRatio: "16 / 9",
   overflow: "hidden",
   borderRadius: 16,
-  background: "#000",
 } as const;
 
 const iframeStyle = {
@@ -183,7 +211,6 @@ const sideBoxStyle = {
   border: "1px solid #7dd3fc",
   borderRadius: 18,
   padding: 16,
-  boxShadow: "0 8px 22px rgba(14,165,233,0.18)",
 } as const;
 
 const articleStyle = {
@@ -204,31 +231,29 @@ const articleTitleStyle = {
 
 const articleTextStyle = {
   color: "#0f766e",
-  lineHeight: 1.5,
   textAlign: "center",
 } as const;
 
 const descBoxStyle = {
   gridColumn: "1 / 4",
-  background: "linear-gradient(145deg, #f0f9ff, #e0f7ff)",
+  background: "#f0f9ff",
   border: "2px solid #38bdf8",
   borderRadius: 20,
   padding: 28,
-  boxShadow: "0 10px 28px rgba(14,165,233,0.22)",
+  marginTop: 20,
 } as const;
 
 const descTitleStyle = {
-  fontSize: 26,
+  fontSize: 28,
   fontWeight: "bold",
   color: "#075985",
-  marginBottom: 14,
+  marginBottom: 16,
   textAlign: "center",
 } as const;
 
 const descTextStyle = {
   color: "#0f766e",
   fontSize: 18,
-  lineHeight: 1.8,
-  marginBottom: 12,
   textAlign: "center",
+  marginBottom: 12,
 } as const;

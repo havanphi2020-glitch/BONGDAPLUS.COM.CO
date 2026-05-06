@@ -1,6 +1,9 @@
-import Link from "next/link";
+"use client";
 
-const posts = [
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const featuredPosts = [
   {
     title: "Tin nóng bóng đá hôm nay",
     desc: "Cập nhật nhanh những tin tức bóng đá đáng chú ý trong ngày.",
@@ -27,12 +30,66 @@ const categories = [
   { title: "Vinanext", href: "/vinanext" },
 ];
 
+type Post = {
+  id?: string | number;
+  title: string;
+  slug?: string;
+  category?: string;
+  categorySlug?: string;
+  image?: string;
+  desc?: string;
+  excerpt?: string;
+  content?: string;
+  createdAt?: string;
+  date?: string;
+};
+
+function toSlug(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "d")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+}
+
+function cleanText(html?: string) {
+  return html ? html.replace(/<[^>]+>/g, "").slice(0, 140) : "";
+}
+
 export default function HomePage() {
+  const [latestPosts, setLatestPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    try {
+      const savedPosts = localStorage.getItem("posts");
+
+      if (savedPosts) {
+        const adminPosts = JSON.parse(savedPosts).map((item: any) => ({
+          ...item,
+          slug: item.slug || toSlug(item.title || ""),
+          desc:
+            item.desc ||
+            item.excerpt ||
+            cleanText(item.content) ||
+            "Chưa có mô tả bài viết.",
+        }));
+
+        setLatestPosts(adminPosts.reverse());
+      }
+    } catch (error) {
+      console.error("Lỗi đọc bài viết localStorage:", error);
+    }
+  }, []);
+
   return (
     <main className="home-page">
       <h1 className="home-title">BONGDAPLUS.COM.CO - NƠI BÙNG NỔ CẢM XÚC</h1>
 
-      {/* VIDEO + 2 BANNER */}
       <section className="home-top-grid">
         <aside className="home-banner">
           <span>Banner trái</span>
@@ -53,7 +110,6 @@ export default function HomePage() {
         </aside>
       </section>
 
-      {/* KHUNG VĂN BẢN TRANG CHỦ */}
       <section className="home-desc-box">
         <h2>Giới thiệu trang chủ</h2>
 
@@ -73,12 +129,48 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* BÀI VIẾT NỔI BẬT */}
+      <section className="home-section">
+        <h2 className="home-section-title">Bài viết mới nhất</h2>
+
+        {latestPosts.length === 0 ? (
+          <p>Chưa có bài viết nào được đăng từ admin.</p>
+        ) : (
+          <div className="home-post-grid">
+            {latestPosts.map((post) => (
+              <Link
+                key={post.id || post.slug || post.title}
+                href={`/bai-viet/${post.slug || toSlug(post.title)}`}
+                className="home-post-card"
+              >
+                {post.image ? (
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="home-post-img"
+                  />
+                ) : (
+                  <div className="home-post-image">Ảnh bài viết</div>
+                )}
+
+                <h3>{post.title}</h3>
+
+                <p>
+                  {post.desc ||
+                    post.excerpt ||
+                    cleanText(post.content) ||
+                    "Chưa có mô tả bài viết."}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
       <section className="home-section">
         <h2 className="home-section-title">Bài viết nổi bật</h2>
 
         <div className="home-post-grid">
-          {posts.map((post) => (
+          {featuredPosts.map((post) => (
             <Link key={post.title} href={post.href} className="home-post-card">
               <div className="home-post-image">Ảnh bài viết</div>
 
@@ -90,7 +182,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CHUYÊN MỤC */}
       <section className="home-section">
         <h2 className="home-section-title">Chuyên mục</h2>
 

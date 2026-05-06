@@ -1,45 +1,69 @@
 export const posts = [
   {
-    slug: "tin-nong-bong-da-hom-nay",
+    slug: "tin-nong-bong-da",
     title: "Tin nóng bóng đá hôm nay",
-    category: "Bóng đá Việt Nam",
     categorySlug: "bong-da-viet-nam",
     image: "/post1.jpg",
-    desc: "Cập nhật nhanh những tin tức bóng đá đáng chú ý trong ngày.",
+    desc: "Cập nhật nhanh các tin nóng bóng đá hôm nay.",
     content: `
-Đây là nội dung bài viết tin nóng bóng đá hôm nay.
+Đây là bài viết demo bóng đá Việt Nam.
 
-Bạn có thể viết nhiều đoạn văn tại đây. Nội dung sẽ hiển thị trong trang chi tiết bài viết.
-
-Phần này sau này có thể thay bằng dữ liệu thật từ database hoặc CMS.
+Nội dung bài viết sẽ hiện tại trang chi tiết.
     `,
   },
 
   {
-    slug: "ngoai-hang-anh-moi-nhat",
+    slug: "ngoai-hang-anh-moi",
     title: "Ngoại hạng Anh mới nhất",
-    category: "Ngoại hạng Anh",
     categorySlug: "ngoai-hang-anh",
     image: "/post2.jpg",
-    desc: "Lịch thi đấu, kết quả và các diễn biến nổi bật.",
+    desc: "Thông tin mới nhất ngoại hạng anh.",
     content: `
-Ngoại hạng Anh luôn là giải đấu hấp dẫn với nhiều diễn biến đáng chú ý.
-
-Bài viết này dùng để demo trang chi tiết tin tức.
+Đây là bài viết demo ngoại hạng anh.
     `,
   },
 
   {
-    slug: "bong-da-the-gioi",
-    title: "Bóng đá thế giới",
-    category: "Bóng đá Thế giới",
+    slug: "tin-the-gioi",
+    title: "Bóng đá thế giới hôm nay",
     categorySlug: "bong-da-the-gioi",
     image: "/post3.jpg",
-    desc: "Tin quốc tế, chuyển nhượng và phân tích chuyên sâu.",
+    desc: "Các tin tức bóng đá quốc tế nổi bật.",
     content: `
-Bóng đá thế giới cập nhật những thông tin mới nhất từ các giải đấu lớn.
+Đây là bài viết demo bóng đá thế giới.
+    `,
+  },
 
-Đây là phần nội dung chi tiết của bài viết.
+  {
+    slug: "bat-dong-san-hot",
+    title: "Tin bất động sản mới",
+    categorySlug: "bat-dong-san",
+    image: "/post4.jpg",
+    desc: "Biến động thị trường bất động sản.",
+    content: `
+Đây là bài viết demo bất động sản.
+    `,
+  },
+
+  {
+    slug: "bien-dong-hom-nay",
+    title: "Biến động mỗi ngày",
+    categorySlug: "bien-dong-moi-ngay",
+    image: "/post5.jpg",
+    desc: "Các biến động đáng chú ý hôm nay.",
+    content: `
+Đây là bài viết demo biến động mỗi ngày.
+    `,
+  },
+
+  {
+    slug: "vinanext-news",
+    title: "Tin tức Vinanext",
+    categorySlug: "vinanext",
+    image: "/post6.jpg",
+    desc: "Thông tin mới nhất Vinanext.",
+    content: `
+Đây là bài viết demo Vinanext.
     `,
   },
 ];
